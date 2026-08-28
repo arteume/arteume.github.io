@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10182d">
+  <title>Joyeux anniversaire 💜</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="site-shell">
+    <section class="screen screen-welcome" id="welcome-screen" aria-labelledby="welcome-title">
+      <h1 id="welcome-title">Joyeux anniversaire <span aria-label="cœur violet">💜</span></h1>
+      <p class="intro">On va quelque part... À toi de trouver où !</p>
+      <img class="welcome-photo" id="welcome-photo" src="photo.jpg" alt="Photo souvenir" hidden style="display: none">
+      <div class="welcome-actions">
+        <button class="button button-primary" id="start-button" type="button">Coulich <span aria-hidden="true">↗</span></button>
+        <button class="button button-quiet" id="reset-welcome-button" type="button" hidden>Recommencer</button>
+      </div>
+    </section>
+
+    <section class="screen screen-quest" id="quest-screen" aria-labelledby="question-title" hidden>
+      <div class="question-layout">
+        <div class="question-index" aria-hidden="true" id="question-index">01</div>
+        <div class="question-copy">
+          <h2 id="question-title">Loading question...</h2>
+        </div>
+      </div>
+
+      <form class="answer-form" id="answer-form" novalidate>
+        <label for="answer-input">Ta réponse</label>
+        <div class="answer-row">
+          <input id="answer-input" name="answer" type="text" autocomplete="off" spellcheck="false" required aria-describedby="answer-message">
+          <button class="button button-primary submit-button" type="submit">Valider <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="answer-message" id="answer-message" role="status" aria-live="polite"></p>
+      </form>
+
+      <button class="text-button" id="quit-button" type="button">Retour à l’accueil</button>
+    </section>
+
+    <section class="screen screen-clue" id="clue-screen" aria-labelledby="clue-title" hidden>
+      <p class="eyebrow">Indice</p>
+      <h2 id="clue-title">[PLACEHOLDER INDICE 01]</h2>
+      <div class="clue-actions">
+        <button class="button button-primary" id="next-button" type="button">Continuer <span aria-hidden="true">↗</span></button>
+        <button class="button button-quiet" id="clue-restart-button" type="button" hidden>Recommencer</button>
+        <button class="button button-quiet" id="all-clues-button" type="button" hidden>Voir tous les indices</button>
+      </div>
+      <img class="clue-photo" id="clue-photo" src="indice.jpg" alt="Illustration de l’indice" hidden style="display: none">
+    </section>
+
+    <section class="screen screen-complete" id="complete-screen" aria-labelledby="all-clues-title" hidden>
+      <p class="final-message">Tu as réussi, ma nouille</p>
+      <table class="clue-table">
+        <caption id="all-clues-title" class="visually-hidden">Tous les indices</caption>
+        <thead><tr><th scope="col">N°</th><th scope="col">Indice</th></tr></thead>
+        <tbody id="clue-list"></tbody>
+      </table>
+      <button class="button button-primary" id="restart-button" type="button">Recommencer <span aria-hidden="true">↗</span></button>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
