@@ -101,8 +101,14 @@ em { color: var(--violet); font-style: italic; }
 @media (max-width: 620px) {
   .header-note { display: none; }
   .screen { padding-top: 4rem; }
-  .question-layout { grid-template-columns: 1fr; gap: .5rem; }
+  .screen-layout, .question-layout, .complete-layout { grid-template-columns: 1fr; }
+  .question-copy-wrap { grid-template-columns: 1fr; gap: .5rem; }
   .question-index { font-size: 1.3rem; }
+  .welcome-photo, .question-photo, .clue-photo, .complete-photo {
+    max-width: min(100%, 16rem);
+    max-height: 12rem;
+    margin: 0 auto;
+  }
   .answer-form, .text-button { margin-left: 0; }
   .answer-row { flex-direction: column; }
   .submit-button { width: 100%; }
