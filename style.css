@@ -48,6 +48,9 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 
 .screen { flex: 1; padding: clamp(4.5rem, 12vh, 9rem) 0 5rem; animation: enter .5s ease both; }
 .screen[hidden] { display: none; }
+.screen-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, 360px); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.content-panel { min-width: 0; }
+.media-panel { display: flex; justify-content: center; align-items: center; }
 .eyebrow { margin: 0 0 1.2rem; color: var(--blue); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
 h1, h2 { max-width: 12ch; margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: 0; line-height: 1.02; }
 h1 { font-size: clamp(3.2rem, 8vw, 6.8rem); }
@@ -63,9 +66,10 @@ em { color: var(--violet); font-style: italic; }
 .button-quiet:hover, .text-button:hover { color: var(--ink); }
 .saved-note { margin: 1.25rem 0 0; color: var(--success); font-size: .9rem; }
 
-.welcome-photo { display: block; width: min(100%, 24rem); max-height: 18rem; margin-top: 2.4rem; object-fit: cover; border: 1px solid var(--line-bright); }
+.welcome-photo, .question-photo, .clue-photo { display: block; width: 100%; max-width: 24rem; max-height: 22rem; object-fit: cover; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
 
-.question-layout { display: grid; grid-template-columns: 5rem 1fr; gap: 1.4rem; align-items: start; }
+.question-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 320px); gap: 1.5rem; align-items: center; }
+.question-copy-wrap { display: grid; grid-template-columns: 5rem 1fr; gap: 1.4rem; align-items: start; }
 .question-index { color: var(--violet); font-family: Georgia, serif; font-size: 2rem; }
 .answer-form { max-width: 43rem; margin: clamp(3rem, 8vw, 6rem) 0 0 6.4rem; }
 .answer-form label { display: block; margin-bottom: .65rem; color: var(--muted); font-size: .82rem; }
@@ -78,12 +82,14 @@ em { color: var(--violet); font-style: italic; }
 .text-button { margin: 2rem 0 0 6.4rem; padding: .25rem 0; font-size: .8rem; text-decoration: underline; text-underline-offset: .25rem; }
 
 .screen-complete { text-align: center; }
+.complete-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(220px, 320px); gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
 .final-message { margin: 0 auto 2rem; color: var(--violet); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.7rem, 4vw, 2.6rem); }
 .clue-table { width: min(100%, 46rem); margin: 0 auto; border-collapse: collapse; text-align: left; }
 .clue-table th, .clue-table td { border-bottom: 1px solid var(--line); padding: .85rem .7rem; }
 .clue-table thead { color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
 .clue-table tbody th { width: 4rem; color: var(--violet); font-family: Georgia, serif; font-weight: 400; }
 .clue-table tbody td { color: var(--ink); }
+.complete-photo { display: block; width: 100%; max-width: 22rem; max-height: 22rem; object-fit: cover; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
 .screen-complete .button, .screen-clue .button { margin-top: 2.5rem; }
 .screen-clue h2 { max-width: 42rem; overflow-wrap: anywhere; }
 .clue-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }

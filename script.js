@@ -2,24 +2,24 @@ const QUEST_STORAGE_KEY = "coulich-quest-progress";
 
 // Replace each placeholder with the real question and accepted answer(s).
 const quest = [
-  { question: "[PLACEHOLDER QUESTION 01]", answer: ["PLACEHOLDER_01"], clue: "[PLACEHOLDER INDICE 01]" },
-  { question: "[PLACEHOLDER QUESTION 02]", answer: ["PLACEHOLDER_02"], clue: "[PLACEHOLDER INDICE 02]" },
-  { question: "[PLACEHOLDER QUESTION 03]", answer: ["PLACEHOLDER_03"], clue: "[PLACEHOLDER INDICE 03]" },
-  { question: "[PLACEHOLDER QUESTION 04]", answer: ["PLACEHOLDER_04"], clue: "[PLACEHOLDER INDICE 04]" },
-  { question: "[PLACEHOLDER QUESTION 05]", answer: ["PLACEHOLDER_05"], clue: "[PLACEHOLDER INDICE 05]" },
-  { question: "[PLACEHOLDER QUESTION 06]", answer: ["PLACEHOLDER_06"], clue: "[PLACEHOLDER INDICE 06]" },
-  { question: "[PLACEHOLDER QUESTION 07]", answer: ["PLACEHOLDER_07"], clue: "[PLACEHOLDER INDICE 07]" },
-  { question: "[PLACEHOLDER QUESTION 08]", answer: ["PLACEHOLDER_08"], clue: "[PLACEHOLDER INDICE 08]" },
-  { question: "[PLACEHOLDER QUESTION 09]", answer: ["PLACEHOLDER_09"], clue: "[PLACEHOLDER INDICE 09]" },
-  { question: "[PLACEHOLDER QUESTION 10]", answer: ["PLACEHOLDER_10"], clue: "[PLACEHOLDER INDICE 10]" },
-  { question: "[PLACEHOLDER QUESTION 11]", answer: ["PLACEHOLDER_11"], clue: "[PLACEHOLDER INDICE 11]" },
-  { question: "[PLACEHOLDER QUESTION 12]", answer: ["PLACEHOLDER_12"], clue: "[PLACEHOLDER INDICE 12]" },
-  { question: "[PLACEHOLDER QUESTION 13]", answer: ["PLACEHOLDER_13"], clue: "[PLACEHOLDER INDICE 13]" },
-  { question: "[PLACEHOLDER QUESTION 14]", answer: ["PLACEHOLDER_14"], clue: "[PLACEHOLDER INDICE 14]" },
-  { question: "[PLACEHOLDER QUESTION 15]", answer: ["PLACEHOLDER_15"], clue: "[PLACEHOLDER INDICE 15]" },
-  { question: "[PLACEHOLDER QUESTION 16]", answer: ["PLACEHOLDER_16"], clue: "[PLACEHOLDER INDICE 16]" },
-  { question: "[PLACEHOLDER QUESTION 17]", answer: ["PLACEHOLDER_17"], clue: "[PLACEHOLDER INDICE 17]" },
-  { question: "[PLACEHOLDER QUESTION 18]", answer: ["PLACEHOLDER_18"], clue: "[PLACEHOLDER INDICE 18]" }
+  { question: "Te rappelles-tu où j'ai caché tes chaussettes ? Il y a une autre chose cachée là-bas...", answer: ["Joyeux anniversaire !"], clue: "Il était un matin..." },
+  { question: "Maintenant, habille-toi, on descend... Combien de boîtes aux lettres numérotées se trouvent dans ton immeuble ?", answer: ["28"], clue: "Et c'était l'anniversaire de la plus belle fille au monde !" },
+  { question: "Comment s'appelle le parc à côté, où tu vas souvent ?", answer: ["square saint-lambert", "saint-lambert"], clue: "Et cette fille allait quelque part avec son copain..." },
+  { question: "On longe le square à droite. En face de l'immeuble noir, on tourne à droite. Que voit-on sur le mur d'en face ?", answer: ["miroir"], clue: "Mais elle ne savait pas où ! Il fallait donc trouver..." },
+  { question: "On continue tout droit, on passe le croisement jusqu'à la prochaine rue perpendiculaire. Regarde autour de toi : de quel pays s'agit-il ?", answer: ["danemark"], clue: "Cet endroit se trouve en plein cœur de Paris, mais il est pourtant entouré d'oliviers..." },
+  { question: "On va jusqu'au prochain croisement et on tourne à droite. Un peu plus loin, il y a une laverie. Combien de machines à laver y a-t-il à l'intérieur ?", answer: ["31"], clue: "Il se trouve à côté d'un jardin..." },
+  { question: "On continue et on passe le croisement. Combien de garçons vois-tu ?", answer: ["3"], clue: "Et également à côté d'un musée..." },
+  { question: "On continue jusqu'au croisement avec l'avenue Félix-Faure. Regarde autour de toi : il s'agit de quelque chose qui nous caractérise, toi et moi. Qu'est-ce que c'est ?", answer: ["gourmands"], clue: "Dans le premier arrondissement de Paris !" },
+  { question: "On continue à gauche. Romain Lepoulet ? Romain Lecanard ? Romain Le...?", answer: ["bœuf", "boeuf"], clue: "On y sert de délicieux brunchs..." },
+  { question: "On continue sur l'avenue jusqu'au prochain croisement. Sur ce croisement, il y a un mot qui me fait rire. Lequel ?", answer: ["boucicaut"], clue: "Et, paraît-il, le service y est particulièrement apprécié !" },
+  { question: "On continue sur l'avenue... Et on tombe sur une boulangerie ! Il y a des dessins sur les murs. Combien de croissants vois-tu ?", answer: ["3"], clue: "En plus, c'est facile d'y aller : seulement quelques stations de métro..." },
+  { question: "On tourne à droite et on entre dans le parc. Il faut trouver tous les grands pots de fleurs. Combien y en a-t-il ?", answer: ["6"], clue: "Le numéro de la rue n'est pas 1, mais 2..." },
+  { question: "On ressort de l'autre côté du parc. Au croisement, tourne à droite. Qu'est-ce que j'aime trop voir sur ton visage ?", answer: ["sourire"], clue: "Et la rue... Tu pourrais presque grimper dessus !" },
+  { question: "Tout droit ! Que c'est moche au prochain croisement... Et le couscous maison, c'est quels jours ?", answer: ["jeudi", "vendredi", "jeudi, vendredi", "jeudi vendredi"], clue: "Son nom te donnera peut-être envie de prendre de la hauteur..." },
+  { question: "On longe la rue. Quel est le nom de la friperie où j'ai acheté une super casquette ?", answer: ["kikiwaka", "kiki waka"], clue: "Le brunch serait-il meilleur que le nôtre ?" },
+  { question: "On continue à droite. Trouve la lettre rose !", answer: ["z"], clue: "À l'adresse..." },
+  { question: "On longe le parc... Et voilà le métro ! Combien de stations dessert cette ligne interminable ?", answer: ["38"], clue: "2, rue de l'Échelle." },
+  { question: "2, rue de l'Échelle.", answer: ["2, rue de l'échelle", "2 rue de l'échelle", "2, rue de l'echelle", "2 rue de l'echelle"], clue: "" }
 ];
 
 const elements = {
