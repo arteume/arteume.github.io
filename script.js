@@ -1,4 +1,42 @@
-const QUEST_STORAGE_KEY = "coulich-quest-progress";
+const QUEST_STORAGE_KEY = "coulich-quest-progress-v2";
+
+const photoFiles = [
+  "1.JPG", "2.JPG", "3.JPG", "4.jpg", "5.jpg", "6.JPG", "7.JPG", "8.JPG", "9.JPG", "10.JPG",
+  "11.PNG", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.PNG", "17.jpg", "18.jpg", "19.jpg", "20.PNG",
+  "21.JPG", "22.PNG", "23.jpg", "24.jpg", "25.PNG", "26.JPG", "27.JPG", "28.jpg", "29.JPG", "30.jpg",
+  "31.JPG", "32.PNG", "33.jpg", "34.JPG", "35.JPG", "36.PNG", "37.jpg", "38.JPG"
+];
+
+function photoPath(number) {
+  return `photos/${photoFiles[number - 1]}`;
+}
+
+function setPhoto(image, number, alt) {
+  image.hidden = true;
+  image.style.display = "none";
+  if (!number) return;
+  image.alt = alt;
+  image.src = photoPath(number);
+}
+
+function initializePhoto(image) {
+  const showImage = () => {
+    if (!image.naturalWidth) return;
+    image.hidden = false;
+    image.style.display = "block";
+  };
+  const hideImage = () => {
+    image.hidden = true;
+    image.style.display = "none";
+  };
+
+  image.addEventListener("load", showImage);
+  image.addEventListener("error", hideImage);
+  if (image.complete) {
+    if (image.naturalWidth) showImage();
+    else hideImage();
+  }
+}
 
 // Replace each placeholder with the real question and accepted answer(s).
 const quest = [
@@ -17,10 +55,19 @@ const quest = [
   { question: "On ressort de l'autre côté du parc. Au croisement, tourne à droite. Qu'est-ce que j'aime trop voir sur ton visage ?", answer: ["sourire"], clue: "Et la rue... Tu pourrais presque grimper dessus !" },
   { question: "Tout droit ! Que c'est moche au prochain croisement... Et le couscous maison, c'est quels jours ?", answer: ["jeudi", "vendredi", "jeudi, vendredi", "jeudi vendredi"], clue: "Son nom te donnera peut-être envie de prendre de la hauteur..." },
   { question: "On longe la rue. Quel est le nom de la friperie où j'ai acheté une super casquette ?", answer: ["kikiwaka", "kiki waka"], clue: "Le brunch serait-il meilleur que le nôtre ?" },
-  { question: "On continue à droite. Trouve la lettre rose !", answer: ["z"], clue: "À l'adresse..." },
-  { question: "On longe le parc... Et voilà le métro ! Combien de stations dessert cette ligne interminable ?", answer: ["38"], clue: "2, rue de l'Échelle." },
-  { question: "2, rue de l'Échelle.", answer: ["2, rue de l'échelle", "2 rue de l'échelle", "2, rue de l'echelle", "2 rue de l'echelle"], clue: "" }
+  { question: "On continue à droite. Trouve la lettre rose !", answer: ["z"], clue: "À toi de savoir" },
+  { question: "Vers Commerce maintenant ! Sur quelle adresse mail faut-il écrire pour la pétanque ?", answer: ["petanque.abcarc@gmail.com"], clue: "À l'adresse..." },
+  { question: "On longe le parc... Et voilà le métro ! Combien de stations dessert cette ligne interminable ?", answer: ["38"], clue: "2, rue de l'Échelle." }
 ];
+
+let nextPhotoNumber = 2;
+quest.forEach((item) => {
+  item.questionPhoto = nextPhotoNumber++;
+  item.cluePhoto = item.clue ? nextPhotoNumber++ : null;
+});
+quest[quest.length - 1].questionPhoto = 38;
+quest[quest.length - 1].cluePhoto = 38;
+const completePhotoNumber = 37;
 
 const elements = {
   welcome: document.querySelector("#welcome-screen"),
@@ -30,11 +77,13 @@ const elements = {
   start: document.querySelector("#start-button"),
   welcomeReset: document.querySelector("#reset-welcome-button"),
   welcomePhoto: document.querySelector("#welcome-photo"),
+  questionPhoto: document.querySelector("#question-photo"),
   restart: document.querySelector("#restart-button"),
   next: document.querySelector("#next-button"),
   clueRestart: document.querySelector("#clue-restart-button"),
   allClues: document.querySelector("#all-clues-button"),
   cluePhoto: document.querySelector("#clue-photo"),
+  completePhoto: document.querySelector("#complete-photo"),
   quit: document.querySelector("#quit-button"),
   form: document.querySelector("#answer-form"),
   input: document.querySelector("#answer-input"),
@@ -75,6 +124,7 @@ function showScreen(screen) {
 function renderQuestion() {
   const item = quest[currentIndex];
   const number = String(currentIndex + 1).padStart(2, "0");
+  setPhoto(elements.questionPhoto, item.questionPhoto, `Photo de la question ${number}`);
   elements.index.textContent = number;
   elements.title.textContent = item.question;
   elements.input.value = "";
@@ -89,6 +139,7 @@ function normalize(value) {
 }
 
 function showClue() {
+  setPhoto(elements.cluePhoto, quest[currentIndex].cluePhoto, `Photo de l’indice ${String(currentIndex + 1).padStart(2, "0")}`);
   elements.clueTitle.textContent = quest[currentIndex].clue;
   const isLastClue = currentIndex === quest.length - 1;
   elements.next.hidden = isLastClue;
@@ -99,7 +150,8 @@ function showClue() {
 }
 
 function renderClueTable() {
-  elements.clueList.replaceChildren(...quest.map((item, index) => {
+  const clues = quest.filter((item) => item.clue.trim());
+  elements.clueList.replaceChildren(...clues.map((item, index) => {
     const row = document.createElement("tr");
     row.innerHTML = `<th scope="row">${String(index + 1).padStart(2, "0")}</th><td>${item.clue}</td>`;
     return row;
@@ -124,6 +176,10 @@ function submitAnswer(event) {
   }
   elements.message.textContent = "";
   elements.message.className = "answer-message success";
+  if (!quest[currentIndex].clue && currentIndex < quest.length - 1) {
+    continueAfterClue();
+    return;
+  }
   showClue();
 }
 
@@ -139,6 +195,7 @@ function continueAfterClue() {
 
 function showAllClues() {
   renderClueTable();
+  setPhoto(elements.completePhoto, completePhotoNumber, "Photo finale de la quête");
   showScreen(elements.complete);
   elements.restart.focus();
 }
@@ -164,22 +221,10 @@ function restartQuest() {
 }
 
 elements.start.addEventListener("click", beginQuest);
-elements.welcomePhoto.addEventListener("load", () => {
-  elements.welcomePhoto.hidden = false;
-  elements.welcomePhoto.style.display = "block";
-});
-elements.welcomePhoto.addEventListener("error", () => {
-  elements.welcomePhoto.hidden = true;
-  elements.welcomePhoto.style.display = "none";
-});
-elements.cluePhoto.addEventListener("load", () => {
-  elements.cluePhoto.hidden = false;
-  elements.cluePhoto.style.display = "block";
-});
-elements.cluePhoto.addEventListener("error", () => {
-  elements.cluePhoto.hidden = true;
-  elements.cluePhoto.style.display = "none";
-});
+initializePhoto(elements.welcomePhoto);
+initializePhoto(elements.questionPhoto);
+initializePhoto(elements.cluePhoto);
+initializePhoto(elements.completePhoto);
 elements.welcomeReset.addEventListener("click", () => { clearProgress(); elements.start.textContent = "Coulich ↗"; elements.start.focus(); });
 elements.restart.addEventListener("click", restartQuest);
 elements.next.addEventListener("click", continueAfterClue);

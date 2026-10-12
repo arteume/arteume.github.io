@@ -66,7 +66,7 @@ em { color: var(--violet); font-style: italic; }
 .button-quiet:hover, .text-button:hover { color: var(--ink); }
 .saved-note { margin: 1.25rem 0 0; color: var(--success); font-size: .9rem; }
 
-.welcome-photo, .question-photo, .clue-photo { display: block; width: 100%; max-width: 24rem; max-height: 22rem; object-fit: cover; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
+.welcome-photo, .question-photo, .clue-photo { display: block; width: auto; height: auto; max-width: 100%; max-height: 22rem; object-fit: contain; object-position: center; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
 
 .question-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 320px); gap: 1.5rem; align-items: center; }
 .question-copy-wrap { display: grid; grid-template-columns: 5rem 1fr; gap: 1.4rem; align-items: start; }
@@ -89,11 +89,11 @@ em { color: var(--violet); font-style: italic; }
 .clue-table thead { color: var(--muted); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
 .clue-table tbody th { width: 4rem; color: var(--violet); font-family: Georgia, serif; font-weight: 400; }
 .clue-table tbody td { color: var(--ink); }
-.complete-photo { display: block; width: 100%; max-width: 22rem; max-height: 22rem; object-fit: cover; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
+.complete-photo { display: block; width: auto; height: auto; max-width: 100%; max-height: 22rem; object-fit: contain; object-position: center; border: 1px solid var(--line-bright); border-radius: 1rem; box-shadow: var(--shadow); }
 .screen-complete .button, .screen-clue .button { margin-top: 2.5rem; }
 .screen-clue h2 { max-width: 42rem; overflow-wrap: anywhere; }
 .clue-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-.clue-photo { width: min(100%, 30rem); max-height: 24rem; margin: 2rem auto 0; object-fit: contain; border: 1px solid var(--line-bright); }
+.clue-photo { max-height: 24rem; margin: 2rem auto 0; object-fit: contain; border: 1px solid var(--line-bright); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
 .site-footer { display: flex; gap: .7rem; padding: 1.5rem 0; }
 
