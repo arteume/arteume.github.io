@@ -1,7 +1,7 @@
 const QUEST_STORAGE_KEY = "coulich-quest-progress-v2";
 
 const photoFiles = [
-  "1.JPG", "2.JPG", "3.JPG", "4.jpg", "5.jpg", "6.JPG", "7.JPG", "8.JPG", "9.JPG", "10.JPG",
+  "1.JPG", "2.JPG", "3.JPG", "4.jpg", "5.jpg", "6.JPG", "7.jpg", "8.JPG", "9.JPG", "10.JPG",
   "11.PNG", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.PNG", "17.jpg", "18.jpg", "19.jpg", "20.PNG",
   "21.JPG", "22.PNG", "23.jpg", "24.jpg", "25.PNG", "26.JPG", "27.JPG", "28.jpg", "29.JPG", "30.jpg",
   "31.JPG", "32.PNG", "33.jpg", "34.JPG", "35.JPG", "36.PNG", "37.jpg", "38.JPG"
@@ -65,7 +65,6 @@ quest.forEach((item) => {
   item.questionPhoto = nextPhotoNumber++;
   item.cluePhoto = item.clue ? nextPhotoNumber++ : null;
 });
-quest[quest.length - 1].questionPhoto = 38;
 quest[quest.length - 1].cluePhoto = 38;
 const completePhotoNumber = 37;
 
